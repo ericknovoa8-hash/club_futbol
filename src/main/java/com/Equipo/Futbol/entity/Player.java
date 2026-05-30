@@ -8,21 +8,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-
 @Entity
-@Table(name = "trainings")
+@Table(name = "players")
 @Data
-public class Trainings {
+
+public class Player {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name = "training_date")
-    private String training_date;
 
-    @Column(name = "description_training")
-    private String description_training;
-    
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "position_player")
+    private String positionPlayer;
+
+    @Column(name = "age")
+    private int age;
     
 }
