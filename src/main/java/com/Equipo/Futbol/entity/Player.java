@@ -11,9 +11,16 @@ import lombok.Data;
 @Entity
 @Table(name = "players")
 @Data
-
+/**
+ * Entidad Player que representa a un jugador de 
+ * fútbol en la base de datos.
+ */
 public class Player {
 
+    /**
+     * ID del jugador, generado automáticamente por 
+     * la base de datos.
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

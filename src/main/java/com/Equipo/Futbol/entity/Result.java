@@ -13,8 +13,17 @@ import lombok.Data;
 @Entity
 @Table(name = "results")
 @Data
-
-public class Results {
+/**
+ * Clase que representa los resultados de un entrenamiento de 
+ * un jugador. Contiene atributos como la potencia de disparo,
+ * velocidad del jugador y pases efectivos, así como referencias
+ * a las entidades Player y Training.
+ */
+public class Result {
+    /**
+     * Identificador único para cada resultado, 
+     * generado automáticamente.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idResults;
