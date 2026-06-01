@@ -9,7 +9,7 @@ import lombok.Data;
  */
 public class ResultRequestDTO {
     
-    private Long idplayer;
+    private Long idPlayer;
 
     private Long idTraining;
 

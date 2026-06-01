@@ -65,7 +65,6 @@ public class PlayerService {
     public HttpGlobalResponseDTO<PlayerResponseDTO> getPlayer(Long id){
 
         HttpGlobalResponseDTO<PlayerResponseDTO> response = new HttpGlobalResponseDTO<>();
-        
         Player player = playerRepository.findById(id).orElseThrow(
             ()-> new RuntimeException("Jugador no encontrado"));
             PlayerResponseDTO responsePlayer = new PlayerResponseDTO();

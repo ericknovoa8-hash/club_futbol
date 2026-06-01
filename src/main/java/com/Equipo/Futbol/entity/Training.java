@@ -21,6 +21,7 @@ import lombok.Data;
 public class Training {
     /**
      * Identificador único de la sesión de entrenamiento.
+     * 
      */
 
     @Id

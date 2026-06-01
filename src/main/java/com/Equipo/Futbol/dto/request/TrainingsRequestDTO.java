@@ -12,7 +12,7 @@ import lombok.Data;
  */
 public class TrainingsRequestDTO {
 
-    private LocalDate traingDate;
+    private LocalDate trainingDate;
 
     private String descriptionTraining;
     

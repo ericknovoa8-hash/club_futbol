@@ -26,16 +26,16 @@ public class Result {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idResults;
+    private Long idResult;
 
     @Column(name = "shooting_power")
-    private int shootingpower;
+    private int shootingPower;
 
     @Column(name = "speed_player")
-    private int speedplayer;
+    private int speedPlayer;
 
     @Column(name = "effective_passes")
-    private int effectivepasses;
+    private int effectivePasses;
 
     @ManyToOne
     @JoinColumn(name = "id_player")
