@@ -25,9 +25,15 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/results")
 @RequiredArgsConstructor
 public class ResultController {
-
+    /**
+     * Servicio de resultados que maneja la lógica de negocio relacionada con la creación, obtención, actualización y eliminación de resultados de partidos.
+     */
     private final ResultService resultService;
-
+    /**
+     * Maneja la solicitud de creación de un nuevo resultado, recibiendo los datos del resultado en el cuerpo de la solicitud y delegando la lógica de negocio al servicio correspondiente. Si la creación es exitosa, devuelve una respuesta con el mensaje de éxito; si ocurre algún error, se captura la excepción y se devuelve una respuesta de error adecuada.
+     * @param request
+     * @return
+     */
     @PostMapping
     public ResponseEntity<MessageResponseDTO> createResult(
         @RequestBody ResultRequestDTO request) {
@@ -39,7 +45,10 @@ public class ResultController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
-
+    /**
+     * Maneja la solicitud de obtención de todos los resultados, delegando la lógica de negocio al servicio correspondiente. Si la obtención es exitosa, devuelve una lista de resultados en la respuesta; si ocurre algún error, se captura la excepción y se devuelve una respuesta de error adecuada.
+     * @return
+     */
     @GetMapping
     public ResponseEntity<List<ResultResponseDTO>> getResults() {
         try {
@@ -50,7 +59,11 @@ public class ResultController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
-
+    /**
+     *  Maneja la solicitud de obtención de un resultado específico por su ID, recibiendo el ID del resultado como parte de la URL y delegando la lógica de negocio al servicio correspondiente. Si la obtención es exitosa, devuelve el resultado en la respuesta; si ocurre algún error, se captura la excepción y se devuelve una respuesta de error adecuada.
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public ResponseEntity<HttpGlobalResponseDTO<ResultResponseDTO>> getResult(
         @PathVariable Long id) {
@@ -63,7 +76,12 @@ public class ResultController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
         }
     }
-
+    /**
+     *  Maneja la solicitud de actualización de un resultado específico por su ID, recibiendo el ID del resultado como parte de la URL y los nuevos datos del resultado en el cuerpo de la solicitud. Delegando la lógica de negocio al servicio correspondiente, si la actualización es exitosa, devuelve el resultado actualizado en la respuesta; si ocurre algún error, se captura la excepción y se devuelve una respuesta de error adecuada.
+     * @param id
+     * @param request
+     * @return
+     */
     @PutMapping("/{id}")
     public ResponseEntity<HttpGlobalResponseDTO<ResultResponseDTO>> updateResult(
         @PathVariable Long id,
@@ -80,7 +98,11 @@ public class ResultController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
         }
     }
-
+    /**
+     *  Maneja la solicitud de eliminación de un resultado específico por su ID, recibiendo el ID del resultado como parte de la URL y delegando la lógica de negocio al servicio correspondiente. Si la eliminación es exitosa, devuelve una respuesta con el mensaje de éxito; si ocurre algún error, se captura la excepción y se devuelve una respuesta de error adecuada.
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<MessageResponseDTO> deleteResult(@PathVariable Long id) {
         try {
