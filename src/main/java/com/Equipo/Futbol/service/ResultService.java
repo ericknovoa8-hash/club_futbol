@@ -50,7 +50,7 @@ public class ResultService {
         result.setShootingPower(request.getShootingPower());
         result.setSpeedPlayer(request.getSpeedPlayer());
         result.setEffectivePasses(request.getEffectivePasses());
-        result.setResultScore(request.getResultScore());// Guardamos el resultado calculado en la entidad Result
+        result.setResultScore(resultado);// Guardamos el resultado calculado en la entidad Result
         
         resultRepository.save(result);
         response.setMessage("Resultado guardado correctamente");
