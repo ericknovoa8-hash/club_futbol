@@ -34,13 +34,23 @@ public class ResultService {
         
         Training training = trainingRepository.findById(request.getIdTraining())
             .orElseThrow(() -> new RuntimeException("Entrenamiento no encontrado"));
+        /**
+         * aqui manejamos la logica para sacar el promedio de los 
+         * jugadores para el equipo titular.
+         */
+        Double resultado = 
+        (request.getShootingPower() * 0.20) +
+        (request.getSpeedPlayer() * 0.30) +
+        (request.getEffectivePasses() * 0.50);
         
         Result result = new Result();
+        
         result.setPlayer(player);
         result.setTraining(training);
-        result.setShootingPower(request.getShootingPower().intValue());
-        result.setSpeedPlayer(request.getSpeedPlayer().intValue());
+        result.setShootingPower(request.getShootingPower());
+        result.setSpeedPlayer(request.getSpeedPlayer());
         result.setEffectivePasses(request.getEffectivePasses());
+        result.setResultScore(request.getResultScore());// Guardamos el resultado calculado en la entidad Result
         
         resultRepository.save(result);
         response.setMessage("Resultado guardado correctamente");
@@ -53,7 +63,7 @@ public class ResultService {
         
         for (Result result : results) {
             ResultResponseDTO dto = new ResultResponseDTO();
-            dto.setIdResult(result.getIdResult());
+            dto.setIdResult(result.getId());
             dto.setIdPlayer(result.getPlayer().getId());
             dto.setIdTraining(result.getTraining().getId());
             dto.setShootingPower(result.getShootingPower());
@@ -71,7 +81,7 @@ public class ResultService {
             .orElseThrow(() -> new RuntimeException("Resultado no encontrado"));
         
         ResultResponseDTO dto = new ResultResponseDTO();
-        dto.setIdResult(result.getIdResult());
+        dto.setIdResult(result.getId());
         dto.setIdPlayer(result.getPlayer().getId());
         dto.setIdTraining(result.getTraining().getId());
         dto.setShootingPower(result.getShootingPower());
@@ -92,22 +102,33 @@ public class ResultService {
         
         Training training = trainingRepository.findById(request.getIdTraining())
             .orElseThrow(() -> new RuntimeException("Entrenamiento no encontrado"));
-        
+        /**
+         * actualizamos el resultado de los jugadores para el 
+         * equpo titular.
+         */
+        Double resultScore =
+            (request.getShootingPower() * 0.20) +
+            (request.getSpeedPlayer() * 0.30) + 
+            (request.getEffectivePasses() * 0.50);
+
         result.setPlayer(player);
         result.setTraining(training);
-        result.setShootingPower(request.getShootingPower().intValue());
-        result.setSpeedPlayer(request.getSpeedPlayer().intValue());
+        result.setShootingPower(request.getShootingPower());
+        result.setSpeedPlayer(request.getSpeedPlayer());
         result.setEffectivePasses(request.getEffectivePasses());
+
+        result.setResultScore(resultScore);// Actualizamos el resultado calculado en la entidad Result
         
         resultRepository.save(result);
         
         ResultResponseDTO dto = new ResultResponseDTO();
-        dto.setIdResult(result.getIdResult());
+        dto.setIdResult(result.getId());
         dto.setIdPlayer(result.getPlayer().getId());
         dto.setIdTraining(result.getTraining().getId());
         dto.setShootingPower(result.getShootingPower());
         dto.setSpeedPlayer(result.getSpeedPlayer());
         dto.setEffectivePasses(result.getEffectivePasses());
+        dto.setResultScore(result.getResultScore());
         
         return dto;
     }

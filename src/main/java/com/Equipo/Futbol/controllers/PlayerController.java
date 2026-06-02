@@ -4,6 +4,7 @@ package com.Equipo.Futbol.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -93,5 +94,18 @@ public class PlayerController {
             error.setMessage("Error al actualizar el Jugador");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
         }
+        
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MessageResponseDTO> deletePlayer(@PathVariable Long id) {
+    try {
+        // Llama al servicio de eliminar que creamos hace unos pasos
+        MessageResponseDTO response = playerService.deletePlayer(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+        
+        } catch (Exception e) {
+          return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
 }

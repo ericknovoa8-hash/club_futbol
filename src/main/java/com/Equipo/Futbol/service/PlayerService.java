@@ -98,6 +98,20 @@ public class PlayerService {
         responsePlayer.setAge(player.getAge());
         return responsePlayer;
     }
+
+    /**
+     * Este método se encarga de eliminar un jugador específico a partir de su id.
+     * @param id
+     * @return
+     */
+    public MessageResponseDTO deletePlayer(Long id) {
+        MessageResponseDTO response = new MessageResponseDTO();
+        Player player = playerRepository.findById(id).orElseThrow(
+            () -> new RuntimeException("Jugador no encontrado"));
+        playerRepository.delete(player);
+        response.setMessage("Jugador eliminado correctamente");
+        return response;
+    }
 }
         
     

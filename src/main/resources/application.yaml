@@ -18,13 +18,19 @@ spring:
         format-sql: true # Formate SQL en los log para mayor legibilidad
 
 
-    server:
-      port: 9082
-      servlet:
-        context-path: /api/v1/football5
+server:
+  port: 9083
+  servlet:
+    context-path: /api/v1/football5
 
 logging:
   level:
     '[org.springframework.web]': INFO
 
       
+security:
+  jwt:
+  # clave secreta que se genera con openssl rand -base64 32
+    secret-key: y6zJy2/ovIXCHgCKS/xG013CacV2Vlb8OTfPf6OfO24=
+    #Expiracion expresada en ms(10 min)
+    token-expiration: 600000

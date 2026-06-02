@@ -15,10 +15,12 @@ public class ResultResponseDTO {
 
     private Long idTraining;
 
-    private double shootingPower;
+    private Integer shootingPower;
 
-    private double speedPlayer;
+    private Integer speedPlayer;
 
     private Integer effectivePasses;
+
+    private Double resultScore;
 
 }

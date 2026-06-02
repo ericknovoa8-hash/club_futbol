@@ -26,22 +26,25 @@ public class Result {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idResult;
+    private Long id;
 
-    @Column(name = "shooting_power")
+    @Column(name = "shooting_power", nullable = false)
     private int shootingPower;
 
-    @Column(name = "speed_player")
+    @Column(name = "speed_player", nullable = false)
     private int speedPlayer;
 
-    @Column(name = "effective_passes")
+    @Column(name = "effective_passes", nullable = false)
     private int effectivePasses;
+
+    @Column(name = "result_score", nullable = false)
+    private double resultScore;
 
     @ManyToOne
     @JoinColumn(name = "id_player")
     private Player player;
 
     @ManyToOne
-    @JoinColumn(name = "id_training")
+    @JoinColumn(name = "id_training", nullable = false)
     private Training training;
 }

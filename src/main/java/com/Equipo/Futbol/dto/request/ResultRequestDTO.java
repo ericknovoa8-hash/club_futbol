@@ -13,11 +13,13 @@ public class ResultRequestDTO {
 
     private Long idTraining;
 
-    private Double shootingPower;
+    private Integer shootingPower;
 
-    private Double speedPlayer;
+    private Integer speedPlayer;
 
     private Integer effectivePasses;
+
+    private Double resultScore;
     
     
 }
