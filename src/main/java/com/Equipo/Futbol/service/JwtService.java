@@ -29,7 +29,7 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-    public String generateToken(Long userId, Long rolId, String Username) {
+    public String generateToken(Long userId, String rolId, String Username) {
         return Jwts.builder()
                .claims(Map.of("userId", userId))
                .claims(Map.of("rolId", rolId))
@@ -81,8 +81,8 @@ public class JwtService {
     public Long extractUserId(String token){
         return extractClaims(token, claims -> claims.get( "userId", Long.class));
     }
-    public Long extractRolId(String token){
-        return extractClaims(token, claims -> claims.get( "rolId", Long.class));
+    public String extractRolId(String token){
+        return extractClaims(token, claims -> claims.get( "rolId", String.class));
 
     }
     public String refreshToken(String token) throws Exception {
@@ -101,7 +101,8 @@ public class JwtService {
             throw new Exception("Server error " + e.getMessage());
         }
         
-        return generateToken(claims.get("userId", Long.class), 
-        claims.get( "rolId", Long.class), claims.getSubject());
+        return generateToken(
+            claims.get("userId", Long.class), 
+        claims.get( "rolId", String.class), claims.getSubject());
     }
 }

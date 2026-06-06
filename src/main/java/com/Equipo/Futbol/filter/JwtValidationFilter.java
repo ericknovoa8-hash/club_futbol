@@ -21,7 +21,7 @@ public class JwtValidationFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request){
         String path = request.getRequestURI();
-        return path.startsWith("/api/v1/football5/auth");
+        return path.startsWith("/api/v1/football5/auth");// "/api/v1/football5/auth" al colocala asi se vuelve privada 
 
     }
     @Override
@@ -42,7 +42,7 @@ public class JwtValidationFilter extends OncePerRequestFilter {
         if (jwtService.isTokenValid(token)){
         String username = jwtService.extractUsername(token);
         Long userId = jwtService.extractUserId(token);
-        Long rolId = jwtService.extractRolId(token);
+        String rolId = jwtService.extractRolId(token);
 
         request.setAttribute("username", username);
         request.setAttribute("userId", userId);

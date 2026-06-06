@@ -1,0 +1,34 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: football5-db
+
+    environment:
+      MYSQL_DATABASE: football5
+      MYSQL_ROOT_PASSWORD: root
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  futbol-app:
+    build: .
+
+    container_name: futbol-api
+
+    ports:
+      - "9083:9083"
+
+    depends_on:
+      - mysql
+
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root
+
+volumes:
+  mysql_data:

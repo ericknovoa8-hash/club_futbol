@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: FutbolApp
+    
+  datasource:
+    url: jdbc:mysql://${DB_HOST}:3306/football5?serverTimezone=UTC&useSSL=false
+    username: root
+    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa: # Configuración de JPA/Hibernate (ORM)
+    database-platform: org.hibernate.dialect.MySQLDialect # Dialecto para MySQL: traduce SQL a sintaxis MySQL
+    hibernate: # Subconfig de Hibernate
+      ddl-auto: update # Crear/Actualizar tablas automaticamente
+    show-sql: true # Mostrar SQL generado en los logs
+    properties: # Propiedades extras de hibernate
+      hibernate:
+        format-sql: true # Formate SQL en los log para mayor legibilidad
+
+
+server:
+  port: 9083
+  servlet:
+    context-path: /api/v1/football5
+
+logging:
+  level:
+    '[org.springframework.web]': INFO
+
+      
+security:
+  jwt:
+  # clave secreta que se genera con openssl rand -base64 32
+    secret-key: y6zJy2/ovIXCHgCKS/xG013CacV2Vlb8OTfPf6OfO24=
+    #Expiracion expresada en ms(10 min)
+    token-expiration: 600000

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Equipo.Futbol.dto.request.LoginRequestDTO;
 import com.Equipo.Futbol.dto.request.RegisterRequestDTO;
+import com.Equipo.Futbol.dto.response.JwtResponseDTO;
 import com.Equipo.Futbol.dto.response.LoginResponseDTO;
 import com.Equipo.Futbol.dto.response.MessageResponseDTO;
 import com.Equipo.Futbol.dto.response.RefreshTokenResponseDTO;
@@ -37,7 +38,7 @@ public class AuthController {
       * @param request
      */
     @PostMapping("/register")
-    public ResponseEntity<MessageResponseDTO register(@RequestBody RegisterRequestDTO request) {
+    public ResponseEntity<MessageResponseDTO> register(@RequestBody RegisterRequestDTO request) {
         try {
             MessageResponseDTO response = authService.register(request);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -52,12 +53,12 @@ public class AuthController {
      * @return
      */
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO request) {
+    public ResponseEntity<JwtResponseDTO> login(@RequestBody LoginRequestDTO request) {
         /**
          * Intenta autenticar al usuario con las credenciales proporcionadas. Si la autenticación es exitosa, devuelve un token JWT en la respuesta. Si ocurre algún error durante el proceso, se captura la excepción y se devuelve una respuesta de error adecuada.
          */
         try {
-            LoginResponseDTO response = authService.login(request);
+            JwtResponseDTO response = authService.login(request);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (Exception e) {
             e.printStackTrace();
