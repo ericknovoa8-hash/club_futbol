@@ -19,7 +19,7 @@ spring:
 
 
 server:
-  port: 9083
+  port: ${PORT:9083}
   servlet:
     context-path: /api/v1/football5
 
