@@ -19,12 +19,6 @@ public class JwtValidationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
 
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request){
-        String path = request.getRequestURI();
-        return path.startsWith("/api/v1/football5/auth");// "/api/v1/football5/auth" al colocala asi se vuelve privada 
-
-    }
-    @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
         throws ServletException, IOException {
             
@@ -63,7 +57,19 @@ public class JwtValidationFilter extends OncePerRequestFilter {
 
 
         }
+
+
+        
+
+
     }
+        @Override
+        protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return path.startsWith("/api/v1/football5/auth/login") ||
+               path.startsWith("/api/v1/football5/auth/register") ||
+               path.startsWith("/api/v1/football5/auth/refresh-token");
+        }
 }
 
     

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Equipo.Futbol.Security.RequiresRole;
 import com.Equipo.Futbol.dto.request.PlayerRequestDTO;
 import com.Equipo.Futbol.dto.response.HttpGlobalResponseDTO;
 import com.Equipo.Futbol.dto.response.MessageResponseDTO;
@@ -36,6 +37,8 @@ public class PlayerController {
      * @param request
      * @return
      */
+
+    @RequiresRole("ADMIN")
     public ResponseEntity<MessageResponseDTO> createPlayer(
         @RequestBody PlayerRequestDTO request){
         /**

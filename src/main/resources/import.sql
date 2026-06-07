@@ -1,2 +1,2 @@
-INSERT INTO users (username, password, role) VALUES ('admin', 'tu_clave_encriptada_o_en_texto', 'ROLE_ADMIN');
-INSERT INTO users (username, password, role) VALUES ('erick', 'otra_clave', 'ROLE_USER');
+    INSERT INTO users (password,role,username) VALUES ('123456', 'ROLE_ADMIN', 'admin');
+    INSERT INTO users (password,role,username) VALUES ('234567', 'ROLE_USER', 'erick');
